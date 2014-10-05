@@ -1,6 +1,6 @@
 package lab6Package;
 import java.util.*;
-public class Lab6numberguessextension {
+public class Lab6EC {
 	public static void main(String[] args) {
 		Random rand = new Random();
 		Scanner sc = new Scanner(System.in);
@@ -8,41 +8,53 @@ public class Lab6numberguessextension {
 		int guess;
 		int count = 0;
 		int reset = 0;
+		int lower_bound = 0;
+		int i = 1;
 		boolean valid = false;
 		
 		System.out.println("Enter a range");
-		System.out.println("Pick 1 for: 1-10");
-		System.out.println("Pick 2 for: 1-100");
-		System.out.println("Pick 3 for: 1-500");
-		System.out.println("Pick 4 for: 1-1000");
+		System.out.println("Choose 1 for: 1-10");
+		System.out.println("Choose 2 for: 1-100");
+		System.out.println("Choose 3 for: 1-1000");
+		System.out.println("Choose 4 for: 1-10000");
+		System.out.println("Choose 5 for: Custom Range");
 		int input = sc.nextInt();
 		while (valid == false) {
 			if (input==1) {
-				reset = 4;
 				range = 10;
-				count = 4; 
 				valid = true;}	
 			else if (input==2) {
-				reset = 7;
 				range = 100;
-				count = 7; 
 				valid = true;}
 			else if (input==3) {
-				reset = 9;
 				range = 500;
-				count = 9; 
 				valid = true;}
 			else if (input==4) {
-				reset = 10;
 				range = 1000;
-				count = 10; 
 				valid = true;}
+			else if (input == 5) {
+				System.out.println("Enter your lower bound");
+				lower_bound = sc.nextInt(); 
+				System.out.println("Enter your upper bound");
+				range = sc.nextInt(); 
+				System.out.println("Your range is " + lower_bound + ", " + range);  
+				valid = true;}	
 			else {
 				System.out.println("Enter a range");
-				input = sc.nextInt(); } }
+				input = sc.nextInt(); 
+				}}
 		
-		int number = rand.nextInt(range);
-				
+		int number = (rand.nextInt((range - lower_bound) + 1) + lower_bound);
+		
+		int custom_test = Math.abs(lower_bound) + Math.abs(range);
+		while (custom_test != 1) {
+			i++;
+			custom_test = custom_test/2;
+			count = i; }
+		reset = count;
+		
+		System.out.println(number + ", You have " +count+ " guesses");
+		
 		String play = "false";
 		
 		while (count != 0) {
@@ -59,12 +71,12 @@ public class Lab6numberguessextension {
 	              System.out.println(("You have ") + count + (" guess(es) left"));}
 	       else if (guess == number) {
 	              count--;      
-	              System.out.println("You guessed it!");
-	              System.out.println("Do you want to play again? (Y/N)"); 
+	              System.out.println("Nailed it!");
+	              System.out.println("Do you want to play again? (Yes or No)"); 
 	       		  play = sc.next();
-	              if ((play.toLowerCase()).equals("y")) {
+	              if ((play.toLowerCase()).equals("yes")) {
 	                     count = reset;
-	                     number = rand.nextInt(range); }}
+	                     number = (rand.nextInt((range - lower_bound) + 1) + lower_bound); }}
 	       		  else if ((play.toLowerCase()).equals("no")) {
 	       			  	 System.out.println("Thanks for playing!");
 	       			  	 System.exit(1); }
@@ -75,10 +87,13 @@ public class Lab6numberguessextension {
 			       		 play = sc.next();
 			             if ((play.toLowerCase()).equals("yes")) {
 			                   count = reset;
-			                   number = rand.nextInt(range); }
+			                   number = (rand.nextInt((range - lower_bound) + 1) + lower_bound); }
 			       		 else if ((play.toLowerCase()).equals("no")) {
 			       			   System.out.println("Thanks for playing!");
 			       			   System.exit(1); }}}
-	       					       					  		
+	       					       					  
+	       		  
+		
+		
 	}
 }
