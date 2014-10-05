@@ -1,0 +1,10 @@
+
+.metadata/.log
+.metadata
+*.prefs
+
+Lab6/.project
+
+Lab6/.classpath
+
+RemoteSystemsTempFiles/.project
