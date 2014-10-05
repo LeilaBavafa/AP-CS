@@ -4,6 +4,7 @@ public class Lab6EC {
 	public static void main(String[] args) {
 		Random rand = new Random();
 		Scanner sc = new Scanner(System.in);
+		// asks the user for an input
 		int range = 0;
 		int guess;
 		int count = 0;
