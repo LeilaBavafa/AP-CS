@@ -1,0 +1,47 @@
+
+
+import kareltherobot.*;
+import java.awt.Color;
+public class BeeperPath extends Robot
+    
+{
+     //instance data variables go here.
+    int i;
+    int j;
+   public BeeperPath(int st, int av, Direction dir, int numBeepers) 
+   {
+       super (st, av, dir, numBeepers);
+    }
+    
+   public void run()
+    {
+        move();
+        followPath();
+    }
+   public void followPath() {       
+       while(nextToABeeper()) {
+            pickBeeper();
+            move();
+       }
+       while (!nextToABeeper()) {
+            turnLeft();
+            turnLeft();
+            move();
+            turnLeft();
+            turnLeft();
+            turnLeft();
+            move();
+            if (!nextToABeeper()) {
+                turnLeft();
+                turnLeft();
+                move();
+                turnLeft();
+                turnLeft();
+                followPath();
+            }
+            if (nextToABeeper()) {
+                followPath();
+            }
+       }
+   }    
+}
