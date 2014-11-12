@@ -1,0 +1,46 @@
+1 /*  
+2  * @author Boyko 
+3  * @version (a version number or a date) 
+4  */ 
+5 import kareltherobot.*; 
+6 public class DefendDemocracy extends Robot 
+7      
+8 { 
+9    //instance data variables go here. 
+10    private int numberOfBeepers = 0; 
+11    public DefendDemocracy (int st, int av, Direction dir, int numBeepers) 
+12    { 
+13        super (st, av, dir, numBeepers); 
+14    } 
+15    public void run() 
+16    { 
+17       for (int i = 0; i < 5; i++){ 
+18           move(); 
+19           checkBeepers(); 
+20           move(); 
+21       } 
+22    } 
+23    public void checkBeepers(){ 
+24        if (nextToABeeper() == true){ 
+25            pickBeeper(); 
+26            while (facingNorth() == false){ 
+27                turnLeft(); 
+28            } 
+29            move(); 
+30            pickBeeper(); 
+31            turnAround(); 
+32            move(); 
+33            move(); 
+34            pickBeeper(); 
+35            turnAround(); 
+36            move(); 
+37            while (facingEast() == false){ 
+38                turnLeft(); 
+39            } 
+40        } 
+41    } 
+42    public void turnAround(){ 
+43        turnLeft(); 
+44        turnLeft(); 
+45    } 
+46 } 
