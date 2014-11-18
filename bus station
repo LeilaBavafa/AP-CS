@@ -1,0 +1,87 @@
+package busStation;
+public class BusStation
+{
+    
+     ///just a container for a book object
+    private Bus myBus1; 
+    private Bus myBus2;
+    private Bus myBus3;
+    
+    public BusStation()
+    {
+        //since myBook1 is a member variable it has access to all the methods and functions of Book
+    myBus1 = new Bus();
+    myBus2 = new Bus();
+    myBus3 = new Bus();
+    }
+    
+    //load the book with info 
+    public void addBuses()
+    {
+        myBus1.setRoute("123");
+        myBus1.setName("Bus Number: 1");
+        
+        myBus2.setRoute("456");
+        myBus2.setName("Bus Number: Bus Number: 2");
+        
+        myBus3.setRoute("789");
+        myBus3.setName("Bus Number: 3");
+    }
+    //print the book
+    public void printRoutes()
+    {
+        System.out.println("The buses are:");
+        System.out.println(myBus1.getName() + " at " + myBus1.getRoute());
+        System.out.println(myBus2.getName() + " at " + myBus2.getRoute());
+        System.out.println(myBus3.getName() + " at " + myBus3.getRoute());
+    }
+}
+
+ 
+
+package busStation;
+public class MiramonteDriver {
+    public static void main(String[] args) {      
+                // TODO Auto-generated method stub
+                // no constructor because inside a main
+                BusStation  ourBus = new BusStation();
+                ourBus.addBuses();
+                ourBus.printRoutes();
+    }
+}
+
+
+
+ 
+package busStation;
+public class Bus
+{
+    
+    private String name;
+    private String route;
+    
+    public Bus()
+    {
+        name = "";
+        route="";
+    }
+    
+    public String getName()
+    {
+        return name;        
+    }
+    public String getRoute()
+    {
+        return route;
+    }
+    public void setName(String myName)
+    {
+        name = myName;
+    }
+    
+    public void setRoute(String myRoute)
+    {
+        route = myRoute;
+    }
+    
+}
