@@ -1,87 +1,265 @@
-package busStation;
-public class BusStation
-{
-    
-     ///just a container for a book object
-    private Bus myBus1; 
-    private Bus myBus2;
-    private Bus myBus3;
-    
-    public BusStation()
-    {
-        //since myBook1 is a member variable it has access to all the methods and functions of Book
-    myBus1 = new Bus();
-    myBus2 = new Bus();
-    myBus3 = new Bus();
-    }
-    
-    //load the book with info 
-    public void addBuses()
-    {
-        myBus1.setRoute("123");
-        myBus1.setName("Bus Number: 1");
-        
-        myBus2.setRoute("456");
-        myBus2.setName("Bus Number: Bus Number: 2");
-        
-        myBus3.setRoute("789");
-        myBus3.setName("Bus Number: 3");
-    }
-    //print the book
-    public void printRoutes()
-    {
-        System.out.println("The buses are:");
-        System.out.println(myBus1.getName() + " at " + myBus1.getRoute());
-        System.out.println(myBus2.getName() + " at " + myBus2.getRoute());
-        System.out.println(myBus3.getName() + " at " + myBus3.getRoute());
-    }
+package BusStationPackage;
+
+public class Bus {
+
+	private int routeNo;
+
+	private String destination;
+
+	private String departureTime;
+
+	
+
+	//non parameterized constructor
+
+	public Bus() {
+
+		routeNo=0;
+
+		destination="";
+
+		departureTime="";
+
+	}
+
+	// parameterized constructor
+
+	public String toString() {
+
+		return "routeNo:\t" + routeNo + "\n" + "destination:\t" + destination + "\n" + "departureTime:\t" + departureTime;		
+
+	}
+
+	
+
+	//getters and setters for each of the 3 variables. 
+
+	public int getrouteNo() {
+
+		return routeNo;
+
+	}
+
+	public String getdestination() {
+
+		return destination;
+
+	}
+
+	public String getdepartureTime() {
+
+		return departureTime;
+
+	}
+
+	//setters
+
+	public void setrouteNo(int busrouteNo) {
+
+		routeNo = busrouteNo;
+
+	}
+
+	public void setdestination(String busdestination) {
+
+		destination = busdestination;
+
+	}
+
+	public void setdepartureTime(String busdepartureTime) {
+
+		departureTime = busdepartureTime;
+
+	}	
+
 }
 
- 
 
-package busStation;
-public class MiramonteDriver {
-    public static void main(String[] args) {      
-                // TODO Auto-generated method stub
-                // no constructor because inside a main
-                BusStation  ourBus = new BusStation();
-                ourBus.addBuses();
-                ourBus.printRoutes();
-    }
+
+
+
+
+
+
+package BusStationPackage;
+
+
+
+
+public class BusStation {
+
+
+
+
+	//just a container for a bus
+
+	private String Address;
+
+	private Bus bus1;
+
+	private Bus bus2;
+
+	
+
+	//non-parameterized constructor
+
+	public  BusStation() {
+
+		bus1 = new Bus();
+
+		bus2 = new Bus();
+
+	}
+
+	
+
+	//getter and setter for Address
+
+	public void setAddress(String Address) {	
+
+		this.Address = Address;
+
+	}
+
+	public String getAddress() {
+
+		return Address;
+
+	}
+
+	
+
+	//getBus(int busNumber) - if bus number is 1, send the info for bus 1, otherwise send the info for bus 2
+
+	public Bus getBus(int busNumber) {
+
+		if (busNumber == 1) {
+
+			bus1.setrouteNo(123);
+
+			bus1.setdestination("Los Angeles");
+
+			bus1.setdepartureTime("9:00 AM");
+
+			return bus1;
+
+		}
+
+		else if (busNumber == 2) {
+
+			bus2.setrouteNo(456);
+
+			bus2.setdestination("San Diego");
+
+			bus2.setdepartureTime("6:42 PM");
+
+			return bus2;
+
+		}
+
+		return null;
+
+					
+
+	}
+
+
+
+
+	public void setBus(int i, int j, String string, String string2) {
+
+		// TODO Auto-generated method stub
+
+	}
+
+		
+
+	//setBus(int busNumber) - if bus number is 1, set the info for bus 1, otherwise set the info for bus 2
+
+	
+
+	
+
+	//non-parameterized constructor
+
+
+
+
+	
+
+	//getter and setter for Address
+
+
+
+
+	
+
+	//getBus(int busNumber) - if bus number is 1, send the info for bus 1, otherwise send the info for bus 2
+
+
+
+
+	
+
+	//setBus(int busNumber) - if bus number is 1, set the info for bus 1, otherwise set the info for bus 2
+
+
+
+
+	
+
 }
 
 
 
- 
-package busStation;
-public class Bus
-{
-    
-    private String name;
-    private String route;
-    
-    public Bus()
-    {
-        name = "";
-        route="";
-    }
-    
-    public String getName()
-    {
-        return name;        
-    }
-    public String getRoute()
-    {
-        return route;
-    }
-    public void setName(String myName)
-    {
-        name = myName;
-    }
-    
-    public void setRoute(String myRoute)
-    {
-        route = myRoute;
-    }
-    
+
+
+
+
+
+
+
+
+package BusStationPackage;
+
+
+
+
+public class SanFranciscoBusStation {
+
+
+
+
+	public static void main(String[] args) {
+
+		// TODO Auto-generated method stub
+
+
+
+
+		BusStation sfBusStation = new BusStation();
+
+		
+
+		sfBusStation.setAddress("145 High Street, San Francisco");
+
+		sfBusStation.setBus(1, 123, "Los Angeles", "9:00 AM");
+
+		sfBusStation.setBus(2, 456, "San Diego", "11:00 AM");
+
+		
+
+		System.out.println("Busses leave from the " + sfBusStation.getAddress() +" bus station are as follows: ");
+
+		System.out.println("Bus 1:\n" + sfBusStation.getBus(1));
+
+		System.out.println("Bus 2:\n" + sfBusStation.getBus(2));
+
+				
+
+	}
+
+
+
+
 }
