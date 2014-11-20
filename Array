@@ -1,0 +1,18 @@
+public class array {
+
+	final static int max = 51;
+
+	final static int mult = 100;
+
+	public static void main(String[] args) {
+		int[] list = new int[max];
+		
+		for(int index = 0; index < max; index++)
+			list[index] = index * mult; 
+
+		for(int index = 0; index < max; index++)
+			System.out.println(list[index] );
+		
+		System.out.println();
+	}
+}
