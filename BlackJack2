@@ -1,0 +1,210 @@
+public class BlackjackHand {
+    static final int MAX_HAND_SIZE = 5;
+    public PlayingCard[] hand;
+    public int numCards;
+    private DeckOfCards[] deck;
+
+    
+    public BlackjackHand(DeckOfCards deck) {
+     deck = new DeckOfCards();
+   hand = new PlayingCard[5];  
+   hand[0] = deck.dealACard();
+   hand[1] = deck.dealACard();
+
+    }
+
+    public int valueOfHand() {
+
+        return (0);
+    }
+
+    public void printHand() {
+
+    }
+
+    public int sizeOfHand() {
+        return 0;
+    }
+
+  
+    PlayingCard mostRecentCard() {
+        return null;
+    }
+
+
+    public void hitMe() {
+       if (numCards == 5){
+           System.out.println("You already have 5 cards.");
+
+       }
+       else {
+
+       }
+    }
+    *********************************************
+    package blackjack;
+
+public class PlayingCards {
+    private String suit; 
+    private int cardFace; 
+
+   
+    public PlayingCards(int v, String s) {
+        cardFace = v;
+        suit = s;
+    }
+
+    boolean isAce() {
+        if(cardFace == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+   
+    public int pointValue() {
+       if(cardFace > 10) {
+           return 10;
+       } else {
+           return cardFace;
+       }
+    }
+
+ 
+    public String name() {
+        String temp = "";
+
+        if(cardFace == 1) {
+            temp += "Ace";
+        } else if(cardFace == 11) {
+            temp += "Jack";
+        } else if(cardFace == 12) {
+            temp += "Queen";
+        } else if(cardFace == 13) {
+            temp += "King";
+        } else { 
+            temp += cardFace; 
+        }
+
+        
+        temp = temp + " of " + suit;
+        return temp;
+    }
+}
+************************************************
+private PlayingCards[] cards;
+private int topOfDeck; 
+
+public DeckOfCards() {
+    cards = new PlayingCard[52];
+    for (int i = 1; i <= 13; i++) { // make all the "hearts" cards
+        cards[i - 1] = new PlayingCard(i, "hearts");
+    }
+    for (int i = 1; i <= 13; i++) { // make all the "hearts" cards
+        cards[i - 1 + 13] = new PlayingCard(i, "clubs");
+    }
+    for (int i = 1; i <= 13; i++) { // make all the "hearts" cards
+        cards[i - 1 + 26] = new PlayingCard(i, "diamonds");
+    }
+    for (int i = 1; i <= 13; i++) { // make all the "hearts" cards
+        cards[i - 1 + 39] = new PlayingCard(i, "spades");
+    }
+    topOfDeck = 51;
+}
+
+public PlayingCard dealACard() {
+    PlayingCard temp = cards[topOfDeck];
+    topOfDeck--;
+    return temp;
+}
+
+public void shuffle() {
+    PlayingCard[] tempArray = new PlayingCard[52];
+
+    Random r = new Random();
+    for (int i = topOfDeck; i >= 0; i--) {
+        int index = r.nextInt(i + 1); 
+        tempArray[i] = cards[index];
+     
+        PlayingCard tempCard = cards[i];
+        cards[i] = cards[index];
+        cards[index] = tempCard;
+    }
+
+    cards = tempArray;
+}
+}
+***********************************************
+package blackjack;
+
+public class BlackJack {
+    static final int WINNING_LIMIT = 21;
+    static final int STAND_VALUE = 17;
+
+
+    public static void main(String[] args) {
+        DeckOfCards deck = new DeckOfCards();
+        deck.shuffle();
+
+        // dealer's starting hand
+        System.out.println("Let's play a hand of Blackjack!\nFirst, it's Dealer's turn.");
+        BlackjackHand theDealer = new BlackjackHand(deck);
+        System.out.println("Dealer begins with a hand of value " + theDealer.valueOfHand() + ":");
+        theDealer.printHand();
+
+
+        while (theDealer.valueOfHand() < STAND_VALUE) {
+            if (theDealer.sizeOfHand() >= BlackjackHand.MAX_HAND_SIZE) { // 5 cards under 21: auto-win
+                System.out.println("Dealer has drawn a hand of 5 cards, of value " + theDealer.valueOfHand() + ".  Automatic win!");
+                theDealer.printHand();
+                return;
+            }
+            theDealer.hitMe();
+            System.out.println("Dealer draws a " + theDealer.mostRecentCard().name() + ", and now has " + theDealer.valueOfHand() + " points.");
+        }
+
+ 
+        if (theDealer.valueOfHand() > WINNING_LIMIT) {
+            System.out.println("Dealer busts. Player 2 wins!");
+            return;
+        }
+
+        System.out.println("Dealer stands with a hand of value " + theDealer.valueOfHand() + ":");
+        theDealer.printHand();
+
+
+        System.out.println("Now, it's player 2's turn.");
+        BlackjackHand player2 = new BlackjackHand(deck);
+        System.out.println("Player 2 begins with a hand of value " + player2.valueOfHand() + ":");
+        player2.printHand();
+
+   
+        while (player2.valueOfHand() < theDealer.valueOfHand()) {
+            if (player2.sizeOfHand() >= BlackjackHand.MAX_HAND_SIZE) { // 5 cards under 21: auto-win
+                System.out.println("Player 2 has drawn a hand of 5 cards, of value " + player2.valueOfHand() + ".  Automatic win!");
+                player2.printHand();
+                return;
+            }
+            player2.hitMe();
+            System.out.println("Player 2 draws a " + player2.mostRecentCard().name() + ", and now has " + player2.valueOfHand() + " points.");
+        }
+
+    
+        if (player2.valueOfHand() > WINNING_LIMIT) {
+            System.out.println("Player 2 busts. Dealer wins!");
+            return;
+        }
+
+        System.out.println("The hand is over.");
+        System.out.println("Dealer's hand has value " + theDealer.valueOfHand() + ":");
+        theDealer.printHand();
+        System.out.println("Player 2's hand has value " + player2.valueOfHand() + ":");
+        player2.printHand();
+
+        if (theDealer.valueOfHand() >= player2.valueOfHand()) {
+            System.out.println("Dealer wins!");
+        } else {
+            System.out.println("Player 2 wins!");
+        }
+    }
+}
