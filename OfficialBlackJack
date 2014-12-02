@@ -1,0 +1,479 @@
+cards
+
+package blackJackPkg;
+
+import java.util.*;
+
+public class Card {
+
+    
+
+    private int count = 0;
+
+    private Card[] deck;
+
+    Card[] cards = new Card[53];
+
+    Card[] cardsCopy = new Card[53];
+
+    private int cardsUsed;
+
+    
+
+    public Card dealCard() {
+
+        cardsUsed++;
+
+        return cards[cardsUsed - 1];
+
+    }
+
+    
+
+    private  String suit;                 
+
+    private  int value;
+
+    private  String face;
+
+    
+
+    public Card(int theValue, String theSuit, String theFace) {
+
+        value = theValue;
+
+        suit = theSuit; 
+
+        face = theFace; }
+
+    
+
+    public String getSuit() {
+
+        return suit; }
+
+    
+
+    public int getValue() {
+
+        return value; 
+
+    }
+
+
+
+
+    public String getFace() {
+
+        return face;
+
+    }
+
+    public void deal() {
+
+        dealCard()
+
+;
+
+    }
+
+}
+
+game
+
+package blackJackPkg;
+
+import java.util.*;
+
+public class Game
+
+{   
+
+    public static void main(String[] args)
+
+    {       
+
+        Hand playerHand = new Hand();
+
+        Hand dealerHand = new Hand();
+
+        
+
+        int playerCounter = 1;
+
+        int playerHandValue = playerHand.getValue();
+
+        int dealerCounter = 1;
+
+        int dealerHandValue = dealerHand.getValue();
+
+        
+
+        Scanner scan = new Scanner(System.in);
+
+        String response = "";
+
+        boolean hitting = true;
+
+
+
+
+        System.out.println("Your cards are:\nCard 1: " + playerHand.getCard(0) + "\nCard 2: " + playerHand.getCard(1));
+
+        System.out.println("Your hand value: " + playerHandValue);
+
+        System.out.println("Dealer showing: " + dealerHand.getCard(1));
+
+        
+
+        if (playerHandValue == 21) {
+
+            System.out.println("You got Blackjack! You win!");
+
+        }
+
+        
+
+        else {
+
+            while (hitting)
+
+            {
+
+                System.out.println("Hit or Stand?");
+
+                response = scan.nextLine();
+
+                //deals with player hitting and if they bust it quits
+
+                if (response.equalsIgnoreCase("Hit"))
+
+                {
+
+                    hitting = true;
+
+                    playerHand.draw();
+
+                    playerCounter ++;
+
+                    System.out.println("You drew the " + playerHand.getCard(playerCounter));
+
+                    playerHandValue = playerHand.getValue();
+
+                    System.out.println("Your hand value: " + playerHandValue);
+
+                    if (playerHandValue > 21)
+
+                    {
+
+                        hitting = false;
+
+                        System.out.println("You Busted!");
+
+                    }
+
+                }
+
+                //deals with dealer hitting and who wins
+
+                else 
+
+                {
+
+                    while (dealerHandValue < 17)
+
+                    {
+
+                        dealerHand.draw();
+
+                        dealerCounter ++;
+
+                        dealerHandValue = dealerHand.getValue();
+
+                    }
+
+                    System.out.println("Dealer's Hand: ");
+
+                    for (int i = 0; i < dealerCounter; i ++)
+
+                    {
+
+                        System.out.println("Card " + (i + 1) + ": " + dealerHand.getCard(i + 1));
+
+                    }
+
+                    if (dealerHandValue > 21)
+
+                        System.out.println("Dealer Busted!");
+
+                    else if (dealerHandValue > playerHandValue)
+
+                        System.out.println("Dealer won.");
+
+                    else if (dealerHandValue < playerHandValue)
+
+                        System.out.println("You won!");
+
+                    else
+
+                        System.out.println("Dealer won (Dealer wins ties).");
+
+                    hitting = false;
+
+                }
+
+            }
+
+        }
+
+    }
+
+
+
+}
+
+
+
+
+hand
+
+
+
+
+
+
+
+package blackJackPkg;
+
+
+
+
+public class Hand
+
+{
+
+    static Deck deck = new Deck();
+
+    
+
+    private Card[] hand = new Card[52];
+
+    
+
+    private int handValue, cards;
+
+    private int aceCounter = 0;
+
+    private int aceAsOne = 0;
+
+   
+
+    Hand()
+
+    {
+
+        hand[0] = deck.deal();
+
+        hand[1] = deck.deal();
+
+
+
+
+        cards = 2;
+
+    }
+
+    public String getCard(int cardNumber) {
+
+        return "" + hand[cardNumber].getValue() + " of " + hand[cardNumber].getSuit();
+
+    }
+
+    public int getValue()
+
+    {
+
+        handValue = 0;
+
+        for (int i = 0; i < cards; i++) {
+
+            handValue = handValue + hand[i].getValue();
+
+        }
+
+        while (handValue > 21 && aceCounter > 0 && aceAsOne < aceCounter)
+
+        {
+
+            handValue = handValue - 10;
+
+            aceAsOne ++;
+
+        }
+
+        return handValue;
+
+    }
+
+
+
+
+
+
+
+    public void redraw(int myCard)
+
+    {
+
+        hand[myCard].deal();
+
+    }
+
+    public void draw()
+
+    {
+
+        hand[cards] = deck.deal();    
+
+        cards ++;
+
+    }
+
+
+
+}
+
+
+
+
+
+
+
+deck
+
+package blackJackPkg;
+
+
+
+
+import java.util.Random;
+
+
+
+
+public class Deck {
+
+
+
+
+    private Card[] deck;
+
+    private int size;
+
+    
+
+    public Deck() {
+
+        deck = new Card[52];
+
+        size = 52;
+
+        
+
+        String[] types = new String[] { "Clubs", "Spades", "Hearts", "Diamonds"};
+
+        
+
+        int count = 0;
+
+        for (String type : types) {
+
+            
+
+            for (int i = 2; i <= 10; i++) {
+
+                deck[count] = new Card(i, type, "Numerical");
+
+                count++;
+
+            }
+
+            
+
+            deck[count] = new Card(10, "Clubs", "Jack");
+
+            count++;
+
+            deck[count] = new Card(10, "Clubs", "Queen");
+
+            count++;
+
+            deck[count] = new Card(10, "Clubs", "King");
+
+            count++;
+
+            deck[count] = new Card(11, "Clubs", "Ace");
+
+            count++; 
+
+        }
+
+        
+
+        deck = RandomizeArray(deck);
+
+    }
+
+        
+
+    private Card[] RandomizeArray(Card[] array){
+
+        Card[] cardsCopy = new Card[array.length];
+
+        for (int i =0; i<52; i++) {
+
+            cardsCopy[i] = array[i];
+
+        }
+
+            
+
+        Random rgen = new Random();     
+
+
+
+
+        for (int i=0; i<array.length; i++) {
+
+            int randomPosition = rgen.nextInt(array.length);
+
+            Card temp = array[i];
+
+            array[i] = array[randomPosition];
+
+            array[randomPosition] = temp;
+
+        }
+
+        return array;
+
+    }
+
+
+
+
+    public Card deal() {
+
+        size--;
+
+        return deck[size];
+
+    }
+
+    
+
+    
+
+
+
+}
