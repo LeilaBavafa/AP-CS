@@ -1,0 +1,47 @@
+/**********Trace************
+
+*9: Same
+
+Break out of loop, false
+
+true
+
+
+
+*-3:Out of bounds
+
+false
+
+
+
+*12:Num is High
+
+Num is Low
+
+Same
+
+Break out of loop
+
+true
+
+
+
+*24:Num is High
+
+Num is High
+
+Num is High
+
+Same
+
+Break out of loop
+
+true
+
+
+
+*52:Out of bounds
+
+false
+
+***************************/
