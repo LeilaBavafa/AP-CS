@@ -1,0 +1,74 @@
+package boggle;
+import java.util.Scanner;
+public class main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		boggle game = new boggle();
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Please enter the words");
+		String words = sc.nextLine();
+		String [] dict = { "pink", "purple", "blue", "green", "oragnge", "plum", "violet", "yellow"};
+		System.out.println(" You got" + words + "points");
+		System.out.println("Would you like to play again, yes or no?");
+
+		
+		
+	}
+	}
+
+
+
+
+
+
+
+
+package boggle;
+import java.util.Scanner;
+public class boggle {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		private boggle ();
+		for ( i = 0; i>11; i++);
+		this.letters[i] = ( random number 0-26 ) + 65 }
+		System.out.println (letters);
+		for ( i=0; i>11; i++);
+		System.out.println ( letters[i] + ",");
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Please enter the words");
+		String words = sc.nextLine();
+		String uIn;
+		while ( true) {
+			System.out.println("Enter a word or enter \ "j\" to submit");
+			if ( uIn.charAt(0 == 'j') break;
+			this.words.add(uIn);
+			int score = 0; 
+			for ((words.length())x) {
+				if (inLetters(word[i]) && intDict(words[i]dict)}
+			score ++;
+			else score - = 2;
+			return score; 
+			char arrayList letters;
+			for ( this.letters.lengthA) {
+				leters.add (this.number.letters[i]);
+				for( wordlets.length){
+					for(letters.length) {
+						if(wordlets(i)==letters(h)){
+							word.lets.remove(i);
+							letters.remove(h);
+							break;
+						}
+					}
+					if (wordlets.length()==0)
+						return true;
+					else if();
+						return false;
+				}
+		
+			}
+		
+	}
+}
+}
