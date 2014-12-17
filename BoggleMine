@@ -1,0 +1,140 @@
+letters
+package bogglePKG;
+import java.util.*;
+ 
+public class Letters {
+	//Generates Letters
+	final char[] alphabet = {'a','b','c','d','e','f','g','h'
+			,'i','j','k','l','m','n','o','p','q'
+			,'r','s','t','u','v','w','x','y','z'};
+	
+	final char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+	char[] printed = new char[10];
+	
+	public void printLetters() {
+		int holder;
+		Random rnd = new Random();
+		for (int i = 0; i < 6; i++) {
+			holder = rnd.nextInt(26);
+			System.out.print(alphabet[holder] + " ");
+			printed[i] = alphabet[holder];
+			
+		}
+		for (int i = 0; i <4; i++) {
+			holder = rnd.nextInt(5);
+			System.out.print(vowels[holder] + " ");
+			printed[i+4] = vowels[holder];
+		}
+		System.out.println("");
+	}
+	public boolean wordCheck(String word) {
+		for (int i=0; i < word.length(); i++) {
+			for (int j=0; j < printed.length; j++) {
+				if (word.indexOf(i) == printed[j]) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+}
+
+
+
+
+
+boggle game
+package bogglePKG;
+import java.util.*;
+public class BoggleGame {
+	public void run() {
+		Scanner scan = new Scanner(System.in);
+		String userInput = "";
+		String[] entered = new String[100];
+		int score = 0;
+		boolean haha;
+		int index = 0;
+		
+		Letters letter = new Letters();
+		letter.printLetters();
+		
+		Word worder = new Word();
+		
+		int count = 0;
+		String[] arrayOfInputs = new String[count];
+		
+		while (!userInput.equals("-1")) {
+			System.out.println("Enter a word");
+			haha = true;
+			
+			entered[index] = userInput = scan.next();
+			for (int i =0; i > entered.length; i++) {
+				if (entered[i].equals(entered[index])) {
+					haha = false;
+				}
+			}
+			if (userInput.equals("-1")) {
+				System.out.println("Thanks for playing");
+				break; }
+			index++;
+			if (haha == false)
+				System.out.println(worder.binarySearch(userInput, haha));
+			else {
+				haha = letter.wordCheck(userInput);
+				System.out.println(worder.binarySearch(userInput, haha));
+			}
+		}
+	}
+}
+
+word
+
+package bogglePKG;
+import java.util.*;
+ 
+public class Word {
+	int score = 0;
+	public Word() {
+		boolean word;
+	}
+	public String binarySearch(String word, boolean boo) {
+		Letters wordChecker = new Letters();
+		String[] words = {"big", "tall", "grand", "no", "yes", "hey", "hello", "smart", "kid", "children"};
+		int index = -1; 
+		
+		if (boo == true) {
+			
+			for (int i = 0; i < words.length; ++i) {
+                if (words[i].equals(word)) {
+                        index = i;
+                        break; }
+			}
+			
+			if (index < 0) {
+				System.out.println("Not a real word"); 
+				System.out.println("The value is -2");
+				score = score -2;
+				}
+			else {
+				System.out.println("This is a real word"); 
+				System.out.println("The value is 1");
+				score++; }
+			}
+		else {
+			System.out.println("Not a real word"); 
+			System.out.println("The value is -2");
+			score = score -2; }
+		return "Score: "+score; 
+	}
+}
+
+driver
+
+package bogglePKG;
+
+public class Driver {
+	public static void main (String args[]) {
+		BoggleGame driver = new BoggleGame();
+		driver.run();
+	}
+}
