@@ -1,0 +1,20 @@
+import java.util.arraylist;
+import java.util.listiterator
+
+public class Recipe{
+public static void main ( String[] args){
+arraylist<String> ingredients = new arraylist<string>();
+ingridients.add ("flour");
+ingridients.add ("sugar);
+ingridients.add ("cocoa");
+ingridients.add ("oil");
+ingridients.add ("butter");
+ingridients.add ("eggs");
+ingridients.add ("baking soda");
+
+system.out.println (" to make chocolate cake; use the following " + ingredients.size() + " ingredients;");
+listiterator iterator = ingredients.listiterator();
+while (iterator.hasnext())
+system.out.println(iterator.next());
+}
+}
