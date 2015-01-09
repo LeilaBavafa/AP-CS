@@ -1,0 +1,34 @@
+package warmup;
+import java.util.*;
+public class warmup {
+	private String myArray;
+	public static void main (String args []){
+		warmup runner = new warmup();
+		ArrayList<String> myArray = runner.Enter();
+		System.out.println(runner.Warmer(myArray));
+	}
+	private ArrayList<String> Enter() {
+		ArrayList<String> myArray = new ArrayList();
+		String holder;
+		Scanner scan = new Scanner(System.in);
+		for ( int i=0; i<5; i++) {
+			System.out.println("Please enter 5 Strings");
+			holder = scan.next();
+			myArray.add(holder);
+		}
+		return myArray;
+	}
+	private boolean Warmer(ArrayList<String> myArray){
+		for ( int i = 0; i<myArray.size(); i++) {
+			for (int j=i; j < myArray.size(); j++) {
+				if ( myArray.get(i).equals(myArray.get(j))) {
+					return true;
+					
+				}
+			}
+			
+		}
+		return false;
+	}
+
+}
