@@ -1,0 +1,35 @@
+package string;
+
+public class tokens {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		public tokenspass ( int playercount);
+board = new int [ playcount ] ;
+Random rand = new Random();
+for ( int i = 0; i<board.length; i++);
+board [i] = rnd.nextInt (10) +1; 
+current Player = rand.nextint(playcount);
+	}
+
+}
+
+
+package string;
+
+public class tokens {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		public void distributecurrentplayertokens();
+		int tokends = board [ current PLayer];
+		int holder = current player +1;
+		board [ current Player ] = 0;
+		while ( tokens >0 ){
+			board [ holder] = board [holder] + 1;
+			tokens --;
+			holder ++;
+			if ( holder >=board.length);
+			holder =0;
+		}
+	}
