@@ -1,0 +1,26 @@
+package string;
+
+public class string {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+ while (str.contains(oldstr)) {
+	 int index = str.indexOf(oldstr);
+	 String first = str.substring(0,index);
+	 String back = str.substring ( index + oldstr.length());
+	 str = first + new str + bacl;
+ }
+ }
+	}
+
+
+package string;
+
+public class string {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+	for ( int i = 0; i<people.size(); i++){
+		Str = apcsReplaceAll(str, people.get(i).getFirstName(), peple.get(i).getNickname())
+	}
+	}
