@@ -39,7 +39,7 @@ public class connectfour
   public static void dropRedPattern(String[][] f)
   {
  
-    System.out.println("Drop a red disk at column (0–6): ");
+    System.out.println("Where would you like to drop the X?: ");
     Scanner scan = new Scanner (System.in);
 
     int c = 2*scan.nextInt()+1;
@@ -47,7 +47,7 @@ public class connectfour
     {
       if (f[i][c] == " ")
       {
-        f[i][c] = "R";
+        f[i][c] = "X";
         break;
       }
        
@@ -56,14 +56,14 @@ public class connectfour
 
   public static void dropYellowPattern(String[][] f)
   {
-    System.out.println("Drop a yellow disk at column (0–6): ");
+    System.out.println("Next player: WHere would you like to drop the O: ");
     Scanner scan = new Scanner (System.in);
     int c = 2*scan.nextInt()+1;
     for (int i =5;i>=0;i--)
     {
       if (f[i][c] == " ")
       {
-        f[i][c] = "Y";
+        f[i][c] = "O";
         break;
       }
        
@@ -160,10 +160,10 @@ public class connectfour
      
        if (checkWinner(f) != null)
        {
-          if (checkWinner(f) == "R")
-             System.out.println("The red player won.");
-          else if (checkWinner(f)== "Y")
-            System.out.println("The yello player won.");
+          if (checkWinner(f) == "X")
+             System.out.println("The first player won.");
+          else if (checkWinner(f)== "O")
+            System.out.println("The second player won.");
      
          loop = false;
     }
