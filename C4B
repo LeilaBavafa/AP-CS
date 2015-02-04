@@ -170,3 +170,67 @@ public class connectfour
   }
 }
 }
+
+
+
+
+
+
+
+
+
+
+
+package confour;
+import java.util.Scanner;
+public class confour{
+public static void main(String[] args) { 
+	
+}
+	public String [][] makeBoard(String [][] check) {
+for(int i=0; i<6; i++);
+	for( int j=0; j<7; j++);
+		check[i][j] = "[_]";{
+	printcheck (check);
+	return check;
+	
+	public void printBoard(String[][] board){
+		for(int i = 0; i < 6; i++) {
+			for ( int j < 7; j++){
+				System.out.println(board[i][j] + ""); }
+			System.out.println();
+		}
+		for ( int k + 1; k < 8; k++)
+			System.out.println(" " + k + " "));
+			System.out.println();
+			}
+		}
+	
+		 public static void dropXPattern(String[][] f)
+		 {
+			 System.out.println("Where would you like to drop the X?: ");
+		Scanner scan = new Scanner (System.in);
+		int c = 2*scan.nextInt()+1;
+		for (int i =5;i>=0;i--)
+		{
+		if (f[i][j] == " ")
+		{
+		f[i][j] = "X";
+		break;
+	}
+		 public static void dropOPattern(String[][] f)
+		 {
+		 System.out.println("Next player: Where would you like to drop the O: ");
+		 Scanner scan = new Scanner (System.in);
+		 int c = 2*scan.nextInt()+1;
+		 for (int i =5;i>=0;i--)
+		 {
+		 if (f[i][j] == " ")
+		 {
+		 f[i][j] = "O";
+		 break;
+		 }
+		
+}
+		}
+	}
