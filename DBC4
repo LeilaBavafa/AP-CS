@@ -1,18 +1,18 @@
-package ConnectFourGame;
+package confour;
 import java.util.Scanner;
  
-public class ConnectFourGame {
+public class confour {
  
     public static void main(String[] args) {
         char[][] board = new char[6][7];
  
-        displayTheBoard(board);
+        displayb(board);
  
         while (true) {
-            // Prompt the first player
-            dropTheDisc('X', board);
+            // This asks the user for their input
+            disc('X', board);
  
-            displayTheBoard(board);
+            displayb(board);
             if (isWon(board)) {
                 System.out.println("First player won!");
                 System.exit(1);
@@ -21,9 +21,9 @@ public class ConnectFourGame {
                 System.exit(2);
             }
  
-            // Prompt the second player
-            dropTheDisc('O', board);
-            displayTheBoard(board);
+            // Asks the second user for their input
+            disc('O', board);
+            displayb(board);
  
             if (isWon(board)) {
                 System.out.println("Second player won!");
@@ -35,7 +35,7 @@ public class ConnectFourGame {
         }
     }
  
-    public static void dropTheDisc(char player, char[][] board) {
+    public static void disc(char player, char[][] board) {
         Scanner input = new Scanner(System.in);
  
         boolean done = false;
@@ -57,14 +57,14 @@ public class ConnectFourGame {
         for (int i = 0; i < board.length; i++) {
             if (board[i][column] == '\u0000') {
                 board[i][column] = player;
-                return true; // successful
+                return true; 
             }
         }
- 
-        return false; // unsuccessful
+        // it will return false if the user inputs a non-applicable column
+        return false; 
     }
  
-    static void displayTheBoard(char[][] board) {
+    static void displayb(char[][] board) {
         for (int i = board.length - 1; i >= 0; i--) {
             System.out.print("|");
             for (int j = 0; j < board[i].length; j++)
@@ -76,7 +76,7 @@ public class ConnectFourGame {
     }
  
     public static boolean isWon(char[][] board) {
-        return isConsecutiveFour(board);
+        return fourinarow(board);
     }
  
     public static boolean isDraw(char[][] board) {
@@ -88,13 +88,13 @@ public class ConnectFourGame {
         return true; // Cells are all now occupied
     }
  
-    public static boolean isConsecutiveFour(char[][] values) {
+    public static boolean fourinarow(char[][] values) {
         int numberOfRows = values.length;
         int numberOfColumns = values[0].length;
  
         // Check rows
         for (int i = 0; i < numberOfRows; i++) {
-            if (isConsecutiveFour(values[i]))
+            if (fourinarow(values[i]))
                 return true;
         }
  
@@ -105,7 +105,7 @@ public class ConnectFourGame {
             for (int i = 0; i < numberOfRows; i++)
                 column[i] = values[i][j];
  
-            if (isConsecutiveFour(column))
+            if (fourinarow(column))
                 return true;
         }
  
@@ -117,7 +117,7 @@ public class ConnectFourGame {
             for (int k = 0; k < numberOfElementsInDiagonal; k++)
                 diagonal[k] = values[k + i][k];
  
-            if (isConsecutiveFour(diagonal))
+            if (fourinarow(diagonal))
                 return true;
         }
  
@@ -129,7 +129,7 @@ public class ConnectFourGame {
             for (int k = 0; k < numberOfElementsInDiagonal; k++)
                 diagonal[k] = values[k][k + j];
  
-            if (isConsecutiveFour(diagonal))
+            if (fourinarow(diagonal))
                 return true;
         }
  
@@ -141,7 +141,7 @@ public class ConnectFourGame {
             for (int k = 0; k < numberOfElementsInDiagonal; k++)
                 diagonal[k] = values[k][j - k];
  
-            if (isConsecutiveFour(diagonal))
+            if (fourinarow(diagonal))
                 return true;
         }
  
@@ -154,14 +154,14 @@ public class ConnectFourGame {
             for (int k = 0; k < numberOfElementsInDiagonal; k++)
                 diagonal[k] = values[k + i][numberOfColumns - k - 1];
  
-            if (isConsecutiveFour(diagonal))
+            if (fourinarow(diagonal))
                 return true;
         }
  
         return false;
     }
  
-    public static boolean isConsecutiveFour(char[] values) {
+    public static boolean fourinarow(char[] values) {
         for (int i = 0; i < values.length - 3; i++) {
             boolean isEqual = true;
             for (int j = i; j < i + 3; j++) {
@@ -179,10 +179,7 @@ public class ConnectFourGame {
     }
 }
 
-
-
-
-
+ 
 
 
 
