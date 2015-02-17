@@ -1,0 +1,84 @@
+MAMMAL
+package inheritance;
+
+public class Mammal {
+
+	private int lifeExtpectancy;
+	private int birthYear;
+	private double avgNumoffspring;
+	
+	public int getLifeExtpectancy() {
+		return lifeExtpectancy;
+	}
+	
+	public void setLifeExtpectancy(int lifeExtpectancy) {
+		this.lifeExtpectancy = lifeExtpectancy;
+	}
+	public int getBirthYear() {
+		return birthYear;
+	}
+	public void setBirthYear(int birthYear) {
+		this.birthYear = birthYear;
+	}
+	public double getAvgNumoffsrping() {
+		return avgNumoffspring;
+	}
+	public void setAvgNumoffsrping(double avgNumoffsrping) {
+		this.avgNumoffspring = avgNumoffsrping;
+	}
+
+
+}
+
+
+
+MAMMAL dRIVER 
+
+package inheritance;
+
+public class MammalDriver {
+	public static void main(String[] args) {
+		Mammal myMammal = new Mammal();
+		
+		myMammal.setavgNumoffspring(2.3);
+		myMammal.setBirthYear(2003);
+		myMammal.setLifeExpectancy(24);
+		
+		System.out.print(myMammal.getavgNumoffspring());
+		Dolphin myDolphin = new Dolphin();
+		
+		myDolphin.setavgNumoffspring(1.1);
+		myDolphin.setBirthYear(2014);
+		myDolphin.setavglengthOfDolphin(10.0);
+		myDolphin.setLengthOffin(1.0);
+		myDolphin.setlifeExpectancy(30);
+	}
+
+}
+
+
+
+
+DOLPHIN
+
+package inheritance;
+
+public class Dolphin extends Mammal {
+	
+	private double lengthOfDolphin;
+	private double lengthOffin;
+	
+	public double getLengthOfDolphin() {
+		return lengthOfDolphin;
+	}
+	public void setLengthOfDolphin(double lengthOfDolphin) {
+		this.lengthOfDolphin = lengthOfDolphin;
+	}
+	public double getLengthOffin() {
+		return lengthOffin;
+	}
+	public void setLengthOffin(double lengthOffin) {
+		this.lengthOffin = lengthOffin;
+	}
+
+}
