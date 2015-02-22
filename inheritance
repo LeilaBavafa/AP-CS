@@ -60,9 +60,9 @@ public class Staff
          "555-8374");
       staffList[5] = new Volunteer ("Carla", "321 Duds Lane",
          "555-7282");
-      staffList[6] = new Commission ("Adam", "456 LayBack Lane",
+      staffList[6] = new Commission ("Roberto", "456 Smithy Lane",
     		  "555-2451", "521-42-4528", 6.25, .2);
-      staffList[7] = new Commission ("Leila", "10 El Campanero", "555-9799", "545-54-1085", 9.75, .15);
+      staffList[7] = new Commission ("Nicholas", "10 El Campanero", "555-9799", "545-54-1085", 9.75, .15);
       
       ((Executive)staffList[0]).awardBonus (500.00);
       ((Hourly)staffList[3]).addHours (40);
