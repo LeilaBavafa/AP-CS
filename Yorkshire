@@ -1,0 +1,27 @@
+package dogs;
+
+public class Yorkshire extends Dog {
+	private String color = "white";
+	public Yorkshire(String name) {
+		// put necessary code here
+		super(name);
+	}
+	public String speak() {
+		// put necessary code here
+		return "yap yap";
+	}
+	public void setColor(String color) {
+		setColor("white");
+	}
+	public String getColor() {
+		return color;
+	}
+	private int avgBreedWeight() {
+		return 15;
+	}
+	public String toString() {
+		return name + " is a " + getClass().toString() + " and says "
+				+ speak() + " is " + getColor() + " and weights "
+				+ avgBreedWeight();
+	}
+}
