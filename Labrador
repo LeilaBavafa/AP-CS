@@ -1,0 +1,30 @@
+package dogs;
+
+public class Labrador extends Dog {
+	private String color = "brown"; //black, yellow, or chocolate?
+	private static int breedWeight = 75;
+
+	public Labrador(String name, String color) {
+		// put necessary code here
+		super(name);
+		this.color = color;
+	}
+	public String speak() {
+		// put necessary code here
+		return "ARF ARF";
+	}
+	public String getColor() {
+		return color;
+	}
+	public static int getAvgBreedWeight() {
+		// put necessary code here
+		return breedWeight;
+	}
+	private int avgBreedWeight() {
+		return breedWeight;
+	}
+	public String toString() {
+		return getName() + " is a " + getClass().toString() + " and says "
+				+ speak() + " is " + getColor() + " and weights " + avgBreedWeight();
+	}
+}
