@@ -1,0 +1,15 @@
+package dogs;
+
+public class DogTest
+{
+public static void main(String[] args) {
+	Dog dog = new Dog("Spike");
+	Dog labby = new Labrador("Rover", "brown");
+	Dog yorkie = new Yorkshire("Yorkie");
+
+	System.out.println(dog.getName() + " says " + dog.speak());
+	System.out.println(labby.toString());
+	System.out.println(yorkie.toString());
+	// put necessary code here
+	}
+}
