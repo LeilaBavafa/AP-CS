@@ -1,0 +1,375 @@
+package inheritanceLab;
+ 
+public class Chiropractor implements DoctorsOffice{
+	private int patientsWithBackProblems;
+	private double costsPerCustomers;
+	private int numDoctors;
+	private int doctorSalary;
+	public Chiropractor(int patients, double costs, int doctors, int salary) {
+		patientsWithBackProblems = patients;
+		costsPerCustomers = costs;
+		numDoctors = doctors;
+		doctorSalary = salary;
+	}
+	@Override
+	public double totalAmountBilledToInsurance() {
+		return BilledToInsurance(); }
+	@Override
+	public double costOfServices() {
+		return CostOfServices(); }
+	private double BilledToInsurance() {
+		return patientsWithBackProblems * costsPerCustomers;
+	}
+	private int CostOfServices() {
+		return numDoctors * doctorSalary;
+	}
+	
+}
+
+
+
+
+package inheritanceLab;
+ 
+public class Dentist implements DoctorsOffice{
+	int numPeopleThatNeedFilling;
+	double costOfFilling;
+	public Dentist(int num, double cost) {
+		numPeopleThatNeedFilling = num;
+		costOfFilling = cost;
+	}
+	@Override
+	public double totalAmountBilledToInsurance() {
+		 return costOfFilling(); }
+	@Override
+	public double costOfServices() {
+		return costOfFilling(); }
+	public double costOfFilling() {
+		return costOfFilling * numPeopleThatNeedFilling;
+	}
+}
+
+
+
+
+package inheritanceLab;
+ 
+public interface DoctorsOffice {
+	public double totalAmountBilledToInsurance();
+	public double costOfServices();
+}
+
+
+
+
+
+package inheritanceLab;
+import java.text.NumberFormat;
+public class Driver {
+	public static void main (String args []){
+		NumberFormat money = NumberFormat.getCurrencyInstance();
+		DoctorsOffice chiro1 = new Chiropractor(123, 79.43, 12, 80300);
+		DoctorsOffice chiro2 = new Chiropractor(106, 129.90, 8, 120000);
+		DoctorsOffice chiro3 = new Chiropractor(12, 95.40, 10, 87500);
+		DoctorsOffice opt1 = new Optician(212, 157.69, 12, 2000.50);
+		DoctorsOffice opt2 = new Optician(12.64, 79.43, 12, 11200);
+		DoctorsOffice opt3 = new Optician(246.97, 385.02, 84, 9999.99);
+		DoctorsOffice dent1 = new Dentist(56, 212.45);
+		DoctorsOffice dent2 = new Dentist(1089, 197.98);
+		DoctorsOffice dent3 = new Dentist(600, 200.34);
+			
+		DoctorsOffice [] office = {chiro1, opt1, dent1, chiro2, opt2, dent2, chiro3, opt3, dent3};
+		System.out.println("**************************************************************************************");
+		double total=0;	
+		double totalCost =0;
+		int count = 0;
+		for (int i = 0; i < office.length; i++) {
+			if (office[i].getClass() == Dentist.class) {
+				count++;
+				System.out.println("Dentist  Dentist Office"+ count + ":\t" + "Amount Billed To Insurance:"
+						+ "\tCosts of Services:");
+				System.out.println("\t\t\t\t\t\t" + money.format(office[i].totalAmountBilledToInsurance()) + "\t\t"
+						+ money.format(office[i].costOfServices()));
+				total += office[i].totalAmountBilledToInsurance();
+				totalCost += office[i].costOfServices();
+			}
+		}
+		System.out.println("Totals:\t\t\t\t" + "Billed:" + "\t\t\t\t" + "Costs:");
+		System.out.println("\t\t\t\t" + money.format(total)+ "\t\t\t" + money.format(totalCost));
+		System.out.println("**************************************************************************************\n");
+		System.out.println("**************************************************************************************");		
+		total=0;	
+		totalCost =0;
+		count = 0;
+		for (int i = 0; i < office.length; i++) {
+			if (office[i].getClass() == Chiropractor.class) {
+				count++;
+				System.out.println("Chiropractor  Chiro Office"+ count + ":\t" + "Amount Billed To Insurance:"
+						+ "\tCosts of Services:");
+				System.out.println("\t\t\t\t\t\t" + money.format(office[i].totalAmountBilledToInsurance()) + "\t\t"
+						+ money.format(office[i].costOfServices()));
+				total += office[i].totalAmountBilledToInsurance();
+				totalCost += office[i].costOfServices();
+			}
+		}
+		System.out.println("Totals:\t\t\t\t" + "Billed:" + "\t\t\t\t" + "Costs:");
+		System.out.println("\t\t\t\t" + money.format(total)+ "\t\t\t" + money.format(totalCost));
+		System.out.println("**************************************************************************************\n");
+		System.out.println("**************************************************************************************");		
+		total=0;	
+		totalCost =0;
+		count = 0;
+		for (int i = 0; i < office.length; i++) {
+			if (office[i].getClass() == Optician.class) {
+				count++;
+				System.out.println("Optician  Optic Office"+ count + ":\t" + "Amount Billed To Insurance:"
+						+ "\tCosts of Services:");
+				System.out.println("\t\t\t\t\t\t" + money.format(office[i].totalAmountBilledToInsurance()) + "\t\t"
+						+ money.format(office[i].costOfServices()));
+				total += office[i].totalAmountBilledToInsurance();
+				totalCost += office[i].costOfServices();
+			}
+		}
+		System.out.println("Totals:\t\t\t\t" + "Billed:" + "\t\t\t\t" + "Costs:");
+		System.out.println("\t\t\t\t" + money.format(total)+ "\t\t\t" + money.format(totalCost));
+		System.out.println("**************************************************************************************\n");
+		
+		Store rest1 = new Restaurant(2000, 4, 12, 90, "Southern Comfort");
+		Store rest2 = new Restaurant(1960, 3, 10, 62, "Califonia Fusion");
+		Store rest3 = new Restaurant(4500, 6, 16, 200, "Southern Comfort");
+		Store salon1 = new Salon(1230, 3, 4, 8,"Full Beauty Spa");
+		Store salon2 = new Salon(650, 2, 2, 2,"Barbershop");
+		Store salon3 = new Salon(2200, 4, 10, 10,"Full Beauty Spa");
+		Store ec1 = new ElectronicStore(10200, 10, 28, true, true);
+		Store ec2 = new ElectronicStore(450, 2, 2, false, true);
+		Store ec3 = new ElectronicStore(6000, 4, 10, true, false);
+		
+		Store [] stores = {rest1, salon1, ec1, rest2, salon2, ec2, rest3, salon3, ec3};
+		System.out.println("**************************************************************************************");
+		int tables =0;	
+		int sqfeet =0;
+		int scRes =0;
+		int cfRes =0;
+		count = 0;
+		for (int i = 0; i < stores.length; i++) {
+			if (stores[i].getClass() == Restaurant.class) {
+				count++;
+				System.out.println("Restuarant"+ count + ":\t" + "Number of Tables:"
+						+ "\tSquare Footage:\t\t" + "Cuisine:");
+				System.out.println("\t\t\t\t" + ((Restaurant) stores[i]).getnumOfTables() + "\t\t"
+						+ ((Restaurant) stores[i]).getsqFootage() + "\t\t    " + ((Restaurant) stores[i]).getcuisine());
+				tables += ((Restaurant) stores[i]).getnumOfTables();
+				sqfeet += ((Restaurant) stores[i]).getsqFootage();
+				
+				if (((Restaurant) stores[i]).getcuisine().equals("Southern Comfort")) {
+					scRes++;
+				}
+				else if (((Restaurant) stores[i]).getcuisine().equals("California Fusion")) {
+					cfRes++;
+				}
+			}
+		}
+		System.out.println("Totals:\t\t" + "Tables:" + "\t\t\t" + "SqFootage:" + "\t\t" + "Most Popular Cuisine");
+		String top;
+		if (cfRes > scRes)
+			top = "California Fusion";
+		else
+			top = "Southern Comfort";
+		System.out.println("\t\t\t\t" + tables + "\t\t" + sqfeet + "\t\t    " + top);
+		System.out.println("**************************************************************************************\n");
+		System.out.println("**************************************************************************************");		
+		total=0;	
+		totalCost =0;
+		count = 0;
+		int seats = 0;
+		int barber =0;
+		int fullBeauty = 0;
+		sqfeet =0;
+		for (int i = 0; i < stores.length; i++) {
+			if (stores[i].getClass() == Salon.class) {
+				count++;
+				System.out.println("Salon"+ count + ":\t\t" + "Number of Seats:"
+						+ "\tSquare Footage:\t\t" + "Salon Type:");
+				System.out.println("\t\t\t\t" + ((Salon) stores[i]).getnumSeats() + "\t\t"
+						+ ((Salon) stores[i]).getsqfootage() + "\t\t    " + ((Salon) stores[i]).getSalonType());
+				seats += ((Salon) stores[i]).getnumSeats();
+				sqfeet += ((Salon) stores[i]).getsqfootage();
+				if (((Salon) stores[i]).getSalonType().equals("Barbershop")) {
+					barber++;
+				}
+				else if (((Salon) stores[i]).getSalonType().equals("Full Beauty Spa")) {
+					fullBeauty++;
+				}
+			}
+		}
+		System.out.println("Totals:\t\t" + "Seats:" + "\t\t\t" + "SqFootage:" + "\t\t" + "Most Popular Salon");
+		if (barber > fullBeauty)
+			top = "Barbershop";
+		else
+			top = "Full Beauty Spa";
+		System.out.println("\t\t\t\t" + tables + "\t\t" + sqfeet + "\t\t    " + top);
+		System.out.println("**************************************************************************************\n");
+		System.out.println("**************************************************************************************");		
+		count=0;
+		sqfeet =0;
+		int apple =0;
+		int phones = 0;
+		for (int i = 0; i < stores.length; i++) {
+			if (stores[i].getClass() == ElectronicStore.class) {
+				count++;
+				System.out.println("Store"+ count + ":\t\t" + "Sells Phones:"
+						+ "\t\tSquare Footage:\t\t" + "Sells Apple Products:");
+				System.out.println("\t\t\t" + ((ElectronicStore) stores[i]).getSellsPhones() + "\t\t\t"
+						+ ((ElectronicStore) stores[i]).getsqFootage() + "\t\t\t" + ((ElectronicStore) stores[i]).getsellsAppleProducts());
+				sqfeet += ((ElectronicStore) stores[i]).getsqFootage();
+				if (((ElectronicStore) stores[i]).getSellsPhones() == true)
+					phones++;
+				if (((ElectronicStore) stores[i]).getsellsAppleProducts() == true)
+					apple++;
+			}
+		}
+		System.out.println("Totals:\t\t" + "Sells Phones:" + "\t\t" + "SqFootage:" + "\t\t" + "Sells Apple Products");
+		System.out.println("\t\t\t" + phones + "\t\t\t" + sqfeet + "\t\t\t" + apple);
+		System.out.println("**************************************************************************************\n");
+	
+	
+	
+	
+	}
+}
+
+
+
+
+
+
+
+
+package inheritanceLab;
+
+public class ElectronicStore extends Store{
+	private int sqfootage;
+	private int numDoors;
+	private int numWindows;
+	private boolean sellsAppleProducts;
+	private boolean sellsPhones;
+	public ElectronicStore(int sqfootage, int numDoors, int numWindows, boolean sellsAppleProducts, boolean sellsPhones) {
+		super(sqfootage, numDoors, numWindows);
+		this.sqfootage = sqfootage;
+		this.numDoors = numDoors;
+		this.numWindows = numWindows;
+		this.sellsAppleProducts = sellsAppleProducts;
+		this.sellsPhones = sellsPhones;
+	}
+	public boolean getSellsPhones() {
+		return sellsPhones;
+	}
+	public int getsqFootage() {
+		return sqfootage;
+	}
+	public boolean getsellsAppleProducts() {
+		return sellsAppleProducts;
+	}
+}
+
+
+
+
+package inheritanceLab;
+ 
+public class Optician implements DoctorsOffice{
+	private double costPerFrame;
+	private double costOfEyeExam;
+	private int patients;
+	private double rent;
+	public Optician(double frame, double exam, int patients, double rent) {
+		costPerFrame = frame;
+		costOfEyeExam = exam;
+		this.patients = patients;
+		this.rent = rent;
+	}
+	public double BilledToInsurance() {
+		return (costPerFrame + costOfEyeExam)*patients;
+	}
+	public double CostOfServices() {
+		return rent;
+	}
+	@Override
+	public double totalAmountBilledToInsurance() {
+		return BilledToInsurance();}
+	@Override
+	public double costOfServices() {
+		return CostOfServices(); }
+ 
+}
+
+
+
+
+
+package inheritanceLab;
+
+public class Restaurant extends Store{
+	private int sqfootage;
+	private int numDoors;
+	private int numWindows;
+	private int numTables;
+	private String cuisineType;
+	public Restaurant(int sqfootage, int numDoors, int numWindows, int numTables, String cuisineType) {
+		super(sqfootage, numDoors, numWindows);
+		this.sqfootage = sqfootage;
+		this.numDoors = numDoors;
+		this.numWindows = numWindows;
+		this.numTables = numTables;
+		this.cuisineType = cuisineType;
+	}
+	public int getnumOfTables() {
+		return numTables;
+	}
+	public int getsqFootage() {
+		return sqfootage;
+	}
+	public String getcuisine() {
+		return cuisineType;
+	}
+}
+
+
+
+package inheritanceLab;
+
+public class Salon extends Store{
+	private int sqfootage;
+	private int numDoors;
+	private int numWindows;
+	private int numSeats;
+	private String salonType;
+	public Salon(int sqfootage, int numDoors, int numWindows, int numSeats, String salonType) {
+		super(sqfootage, numDoors, numWindows);
+		this.numSeats = numSeats;
+		this.numDoors = numDoors;
+		this.sqfootage = sqfootage;
+		this.numWindows = numWindows;
+		this.salonType = salonType;
+	}
+	public int getnumSeats() {
+		return numSeats;
+	}
+	public int getsqfootage() {
+		return sqfootage;
+	}
+	public String getSalonType() {
+		return salonType;
+	}
+}
+
+
+
+
+
+package inheritanceLab;
+
+public abstract class Store {
+	public Store(int sqfootage, int numDoors, int numWindows) {
+	}
+}
