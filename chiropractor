@@ -1,0 +1,27 @@
+package inheritanceLab;
+ 
+public class Chiropractor implements DoctorsOffice{
+	private int patientsWithBackProblems;
+	private double costsPerCustomers;
+	private int numDoctors;
+	private int doctorSalary;
+	public Chiropractor(int patients, double costs, int doctors, int salary) {
+		patientsWithBackProblems = patients;
+		costsPerCustomers = costs;
+		numDoctors = doctors;
+		doctorSalary = salary;
+	}
+	@Override
+	public double totalAmountBilledToInsurance() {
+		return BilledToInsurance(); }
+	@Override
+	public double costOfServices() {
+		return CostOfServices(); }
+	private double BilledToInsurance() {
+		return patientsWithBackProblems * costsPerCustomers;
+	}
+	private int CostOfServices() {
+		return numDoctors * doctorSalary;
+	}
+	
+}
